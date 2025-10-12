@@ -1,4 +1,5 @@
 ﻿using GymManagement.DAL.Entites;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,8 @@ namespace GymManagement.DAL.Repositories.Interfaces
 {
     public interface IMemberRepository : IGenericRepository<Member>
     {
+
+        public Member? GetByEmail(string email);
+        public Member? GetByPhone(string phone);
     }
 }

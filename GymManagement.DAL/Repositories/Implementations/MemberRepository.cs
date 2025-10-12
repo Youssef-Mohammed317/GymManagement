@@ -14,5 +14,14 @@ namespace GymManagement.DAL.Repositories.Implementations
         public MemberRepository(GymDbContext _dbContext) : base(_dbContext)
         {
         }
+
+        public Member? GetByEmail(string email)
+        {
+            return dbContext.Members.FirstOrDefault(m => m.Email.ToUpper() == email.ToUpper());
+        }
+        public Member? GetByPhone(string phone)
+        {
+            return dbContext.Members.FirstOrDefault(m => m.Phone == phone);
+        }
     }
 }

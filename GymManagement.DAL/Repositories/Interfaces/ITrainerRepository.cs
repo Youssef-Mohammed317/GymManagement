@@ -9,5 +9,7 @@ namespace GymManagement.DAL.Repositories.Interfaces
 {
     public interface ITrainerRepository : IGenericRepository<Trainer>
     {
+        Trainer GetByEmail(string email);
+        Trainer GetByPhone(string phone);
     }
 }
