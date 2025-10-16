@@ -1,4 +1,5 @@
-using GymManagement.DAL.Context;
+using GymManagement.DAL.Data.Context;
+using GymManagement.DAL.Data.DataSeed;
 using GymManagement.DAL.Repositories.Implementations;
 using GymManagement.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,15 @@ namespace GymManagement.PL
 
             var app = builder.Build();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<GymDbContext>();
+                context.Database.Migrate();
+                GymDbContextDataSeeding.SeedData(context);
+            }
+
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -37,7 +47,7 @@ namespace GymManagement.PL
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseStaticFiles();
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",

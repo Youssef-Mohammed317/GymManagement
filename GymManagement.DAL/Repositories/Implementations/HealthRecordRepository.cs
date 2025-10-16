@@ -1,4 +1,4 @@
-﻿using GymManagement.DAL.Context;
+﻿using GymManagement.DAL.Data.Context;
 using GymManagement.DAL.Entites;
 using GymManagement.DAL.Repositories.Interfaces;
 using System;

@@ -9,5 +9,6 @@ namespace GymManagement.DAL.Repositories.Interfaces
 {
     public interface ISessionRepository : IGenericRepository<Session>
     {
+        Session GetByIdWithTrainerAndCategory(int id);
     }
 }

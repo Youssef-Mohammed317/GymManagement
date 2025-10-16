@@ -1,4 +1,5 @@
-﻿using GymManagement.DAL.Entites;
+﻿using GymManagement.DAL.Data.DataSeed;
+using GymManagement.DAL.Entites;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
@@ -8,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymManagement.DAL.Context
+namespace GymManagement.DAL.Data.Context
 {
     public class GymDbContext : DbContext
     {
@@ -16,13 +17,10 @@ namespace GymManagement.DAL.Context
 
         public GymDbContext(DbContextOptions<GymDbContext> options) : base(options)
         { }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Server=.;Database=GymManagmentDb;Trusted_Connection=True;TrustServerCertificate=True;");
-        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         }
 
         public DbSet<Member> Members { get; set; }
