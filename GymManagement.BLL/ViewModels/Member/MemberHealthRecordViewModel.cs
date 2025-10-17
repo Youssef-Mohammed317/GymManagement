@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GymManagement.BLL.ViewModels.Member
 {
-    public class MemberHealthRecordView
+    public class MemberHealthRecordViewModel
     {
         [Required(ErrorMessage = "Height Is Required")]
         [Range(0.1, 300, ErrorMessage = "Height Must Be between 0.1 and 300")]

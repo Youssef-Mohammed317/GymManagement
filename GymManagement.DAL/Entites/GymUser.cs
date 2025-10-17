@@ -15,10 +15,10 @@ namespace GymManagement.DAL.Entites
         public string Phone { get; set; } = null!;
         public DateOnly DateOfBirth { get; set; }
         public Gender Gender { get; set; }
-        public Adderss Adderss { get; set; } = null!;
+        public Address Adderss { get; set; } = null!;
     }
     [Owned]
-    public class Adderss
+    public class Address
     {
         public int BuildingNumber { get; set; }
         public string Streat { get; set; } = null!;

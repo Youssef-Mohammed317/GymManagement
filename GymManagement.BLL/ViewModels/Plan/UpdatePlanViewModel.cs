@@ -9,6 +9,7 @@ namespace GymManagement.BLL.ViewModels.Plan
 {
     public class UpdatePlanViewModel
     {
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; } = null!;
         [Required]

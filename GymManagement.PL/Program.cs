@@ -26,8 +26,11 @@ namespace GymManagement.PL
 
             builder.Services.AddAutoMapper(cfg =>
             {
-                cfg.AddMaps(typeof(MappingProfile).Assembly);
+                cfg.AddMaps(typeof(SessionMappingProfile).Assembly);
             });
+            //builder.Services.AddAutoMapper(cfg => AppDomain.CurrentDomain.GetAssemblies());
+
+
 
             var app = builder.Build();
 
