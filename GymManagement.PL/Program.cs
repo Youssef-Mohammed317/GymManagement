@@ -1,3 +1,5 @@
+using AutoMapper;
+using GymManagement.BLL.AutoMapper;
 using GymManagement.DAL.Data.Context;
 using GymManagement.DAL.Data.DataSeed;
 using GymManagement.DAL.Repositories.Implementations;
@@ -22,7 +24,10 @@ namespace GymManagement.PL
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-
+            builder.Services.AddAutoMapper(cfg =>
+            {
+                cfg.AddMaps(typeof(MappingProfile).Assembly);
+            });
 
             var app = builder.Build();
 

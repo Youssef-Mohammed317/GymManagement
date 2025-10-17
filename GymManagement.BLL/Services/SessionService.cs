@@ -1,4 +1,6 @@
-﻿using GymManagement.BLL.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using GymManagement.BLL.Interfaces;
 using GymManagement.BLL.ViewModels.SessionViewModel;
 using GymManagement.DAL.Entites;
 using GymManagement.DAL.Repositories.Interfaces;
@@ -14,10 +16,12 @@ namespace GymManagement.BLL.Services
     public class SessionService : ISessionService
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public SessionService(IUnitOfWork _unitOfWork)
+        public SessionService(IUnitOfWork _unitOfWork, IMapper _mapper)
         {
             unitOfWork = _unitOfWork;
+            mapper = _mapper;
         }
 
         public SessionViewModel CreateSession(CreateSessionViewModel session)
@@ -28,33 +32,12 @@ namespace GymManagement.BLL.Services
             if (trainer != null && cat is not null)
             {
 
-                var sessionModel = new Session
-                {
-                    Capacity = session.Capacity,
-                    CategoryId = session.CategoryId,
-                    Descripcion = session.Description,
-                    TrainerId = session.TrainerId,
-                    StartDate = session.StartDate,
-                    EndDate = session.EndDate,
-                    Created_at = DateTime.Now,
-                };
+                var sessionModel = mapper.Map<Session>(session);
 
                 unitOfWork.SessionRepository.Create(sessionModel);
                 unitOfWork.SaveChanges();
 
-                var sessionViewModel = new SessionViewModel
-                {
-                    Id = sessionModel.Id,
-                    StartDate = sessionModel.StartDate,
-                    EndDate = sessionModel.EndDate,
-                    Capacity = sessionModel.Capacity,
-                    Description = sessionModel.Descripcion,
-                    TrainerName = sessionModel.SessionTrainer.Name,
-                    CategoryName = sessionModel.SessionCategory.CategoryName,
-                    AvailableSlots = sessionModel.Capacity - unitOfWork.MemberSessionRepository.GetAll()
-                    .Where(ms => ms.SessionId == sessionModel.Id).Count()
-                };
-                return sessionViewModel;
+                return mapper.Map<SessionViewModel>(sessionModel);
             }
             throw new Exception("Not Found Exception");
         }
@@ -72,47 +55,22 @@ namespace GymManagement.BLL.Services
 
         public IEnumerable<SessionViewModel> GetAllSessions()
         {
-
-            var sessions = unitOfWork.SessionRepository.GetAll()
+            var sessions = unitOfWork.SessionRepository
+                .GetAll()
                 .Include(s => s.SessionTrainer)
                 .Include(s => s.SessionCategory)
-                .Select(s =>
-                new SessionViewModel
-                {
-                    Id = s.Id,
-                    StartDate = s.StartDate,
-                    EndDate = s.EndDate,
-                    Capacity = s.Capacity,
-                    Description = s.Descripcion,
-                    TrainerName = s.SessionTrainer.Name,
-                    CategoryName = s.SessionCategory.CategoryName,
-                    AvailableSlots = s.Capacity - unitOfWork.MemberSessionRepository.GetAll()
-                    .Where(ms => ms.SessionId == s.Id).Count()
-                }
-            );
+                .ProjectTo<SessionViewModel>(mapper.ConfigurationProvider)
+                .ToList();
 
             return sessions;
         }
         public SessionViewModel GetSessionById(int id)
         {
 
-            var s = unitOfWork.SessionRepository
+            var session = unitOfWork.SessionRepository
                 .GetByIdWithTrainerAndCategory(id);
 
-            var session = new SessionViewModel
-            {
-                Id = s.Id,
-                StartDate = s.StartDate,
-                EndDate = s.EndDate,
-                Capacity = s.Capacity,
-                Description = s.Descripcion,
-                TrainerName = s.SessionTrainer.Name,
-                CategoryName = s.SessionCategory.CategoryName,
-                AvailableSlots = s.Capacity - unitOfWork.MemberSessionRepository.GetAll()
-                      .Where(ms => ms.SessionId == s.Id).Count()
-            };
-
-            return session;
+            return mapper.Map<SessionViewModel>(session);
         }
 
         public SessionViewModel UpdateSession(int id, UpdateSessionViewModel session)
@@ -125,30 +83,13 @@ namespace GymManagement.BLL.Services
             {
                 throw new Exception("Not Found");
             }
-            sessionModel.CategoryId = cat.Id;
-            sessionModel.TrainerId = trainer.Id;
-            sessionModel.Capacity = session.Capacity;
-            sessionModel.Updated_at = DateTime.Now;
-            sessionModel.Descripcion = session.Description;
-            sessionModel.StartDate = session.StartDate;
-            sessionModel.EndDate = session.EndDate;
+
+            sessionModel = mapper.Map(session, sessionModel);
 
             unitOfWork.SessionRepository.Update(sessionModel);
             unitOfWork.SaveChanges();
 
-            var sessionViewModel = new SessionViewModel
-            {
-                Id = sessionModel.Id,
-                StartDate = sessionModel.StartDate,
-                EndDate = sessionModel.EndDate,
-                Capacity = sessionModel.Capacity,
-                Description = sessionModel.Descripcion,
-                TrainerName = sessionModel.SessionTrainer.Name,
-                CategoryName = sessionModel.SessionCategory.CategoryName,
-                AvailableSlots = sessionModel.Capacity - unitOfWork.MemberSessionRepository.GetAll()
-                .Where(ms => ms.SessionId == sessionModel.Id).Count()
-            };
-            return sessionViewModel;
+            return mapper.Map<SessionViewModel>(sessionModel);
         }
     }
 
