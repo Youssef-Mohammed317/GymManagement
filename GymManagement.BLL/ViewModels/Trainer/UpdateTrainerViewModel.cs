@@ -1,5 +1,4 @@
-﻿using GymManagement.BLL.ViewModels.Member;
-using GymManagement.DAL.Entites.Enums;
+﻿using GymManagement.DAL.Entites.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace GymManagement.BLL.ViewModels.Trainer
 {
-    public class CreateTrainerViewModel
+    public class UpdateTrainerViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Name Is Required")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Name Must Be between 2 and 50 char")]
         [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Name Can Only Contain Letters")]
