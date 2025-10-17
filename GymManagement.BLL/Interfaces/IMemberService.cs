@@ -17,7 +17,7 @@ namespace GymManagement.BLL.Interfaces
         MemberViewModel GetById(int id);
         MemberViewModel GetByEmail(string email);
         MemberViewModel GetByPhone(string phone);
-        MemberViewModel UpdateMember(int id, CreateMemberViewModel createMemberViewModel);
+        MemberViewModel UpdateMember(int id, UpdateMemberViewModel updateMemberViewModel);
         MemberViewModel DeleteById(int id);
     }
 }

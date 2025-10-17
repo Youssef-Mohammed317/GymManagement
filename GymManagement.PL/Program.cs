@@ -1,5 +1,7 @@
 using AutoMapper;
 using GymManagement.BLL.AutoMapper;
+using GymManagement.BLL.Interfaces;
+using GymManagement.BLL.Services;
 using GymManagement.DAL.Data.Context;
 using GymManagement.DAL.Data.DataSeed;
 using GymManagement.DAL.Repositories.Implementations;
@@ -21,6 +23,9 @@ namespace GymManagement.PL
             });
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
