@@ -1,48 +1,48 @@
-Route MVC Project – Detailed Technical Description
+# Route MVC Project – Gym Management System
 
-This is a 3-layer MVC application built to demonstrate clean architecture and best practices in .NET development. It is structured into Presentation, Business Logic, and Data Access layers, each with clear responsibilities and separation of concerns:
+🌐 **Live Demo:** http://mygymmanagment.runasp.net/
 
-1. Data Access Layer (DAL):
+🎥 **Project Walkthrough Video:** *(add your video link here — GitHub release / YouTube / Drive)*
 
-Defines all entities representing the core domain models.
+---
 
-Contains repository interfaces and implementations for abstracting data operations.
+## Overview
 
-Includes database configurations and entity relationships.
+This is a **3-layer ASP.NET Core MVC** application built to demonstrate **clean architecture** and **best practices** in .NET development.  
+The solution is structured into **Presentation**, **Business Logic**, and **Data Access** layers with clear separation of concerns.
 
-Implements data seeding for initializing the database with sample data.
+---
 
-Ensures clean, maintainable, and testable data access patterns.
+## Architecture
 
-2. Business Logic Layer (BLL):
+### 1) Data Access Layer (DAL)
+- Defines domain **Entities** representing core models.
+- Implements **Repository Pattern** (interfaces + implementations) to abstract data operations.
+- Includes **Entity configurations** and relationships.
+- Provides **Database Seeding** to initialize the database with sample/required data.
+- Keeps data access clean, maintainable, and testable.
 
-Provides services that encapsulate core business rules and workflows.
+### 2) Business Logic Layer (BLL)
+- Contains **Services** that encapsulate business rules and workflows.
+- Includes **service interfaces** to support Dependency Injection and unit testing.
+- Uses **ViewModels / DTOs** and mapping logic to transform entities into presentation models.
+- Supports consistent data flow through automated mapping.
 
-Includes interfaces for services to support dependency injection and unit testing.
+### 3) Presentation Layer (MVC)
+- Implements **MVC Controllers** to handle HTTP requests and orchestrate responses.
+- Uses **Razor Views** for UI rendering, keeping business logic out of views.
+- Includes shared components / filters to promote reuse and consistency.
+- Handles **validation**, **error handling**, and user-friendly presentation.
 
-Contains ViewModels and mapping logic for transforming domain entities to presentation models.
+---
 
-Implements automated mapping between entities and DTOs for consistent data flow.
+## Project Highlights
+- Clean **layered architecture** and modular design.
+- Applies **Dependency Injection**, **Repository Pattern**, and **Service Pattern**.
+- Includes full database setup: **configuration + initialization + seeding** (ready-to-run).
+- Built as a complete end-to-end project after finishing a learning course, showcasing practical ASP.NET Core MVC skills.
 
-3. Presentation Layer:
+---
 
-Implements MVC controllers for handling HTTP requests and orchestrating responses.
-
-Contains Razor views for the UI, following separation of concerns from business logic.
-
-Provides shared components and filters to promote code reuse and maintain consistency across views.
-
-Handles input validation, error handling, and user-friendly presentation.
-
-Project Highlights:
-
-Demonstrates clean layered architecture and modular design.
-
-Applies dependency injection, repository pattern, and service pattern.
-
-Includes database initialization, configuration, and seeding for a ready-to-run application.
-
-Serves as a first complete project after completing a learning course, showcasing a solid understanding of MVC architecture, structured coding, and practical .NET development skills.
-
-there is a video for the final project
-
+## Notes
+- The repository includes a **final walkthrough video** demonstrating features and project structure.
