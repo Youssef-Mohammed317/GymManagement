@@ -1,8 +1,8 @@
 # Route MVC Project – Gym Management System
 
-🌐 **Live Demo:** http://mygymmanagment.runasp.net/
-
-🎥 **Project Walkthrough Video:** *(add your video link here — GitHub release / YouTube / Drive)*
+🌐 **Live Demo:** http://mygymmanagment.runasp.net/  
+🎥 **Project Walkthrough Video:** https://drive.google.com/file/d/1hFKY7rW5r1RNzcY26mB57fzCTlCR4fxf/view?usp=drive_link  
+📜 **Certificate:** https://drive.google.com/file/d/19RqIrDpleaDBigK_zqCGFvM50ogRDtXL/view?usp=drive_link  
 
 ---
 
@@ -18,7 +18,7 @@ The solution is structured into **Presentation**, **Business Logic**, and **Data
 ### 1) Data Access Layer (DAL)
 - Defines domain **Entities** representing core models.
 - Implements **Repository Pattern** (interfaces + implementations) to abstract data operations.
-- Includes **Entity configurations** and relationships.
+- Includes **Entity configurations** and entity relationships.
 - Provides **Database Seeding** to initialize the database with sample/required data.
 - Keeps data access clean, maintainable, and testable.
 
