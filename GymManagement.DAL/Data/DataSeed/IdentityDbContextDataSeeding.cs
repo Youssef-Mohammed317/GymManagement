@@ -46,14 +46,14 @@ namespace GymManagement.DAL.Data.DataSeed
                 {
                     var mainAdmin = new ApplicationUser()
                     {
-                        FirstName = "Youssef",
-                        LastName = "Mohamed",
-                        UserName = "ym_317",
-                        NormalizedUserName = "ym_317",
-                        Email = "youssef@gmail.com",
+                        FirstName = "Main",
+                        LastName = "Admin",
+                        UserName = "main_admin_317",
+                        NormalizedUserName = "MAIN_ADMIN_317",
+                        Email = "main@test.com",
                         PhoneNumber = "01000000000",
                     };
-                    var result = await userManager.CreateAsync(mainAdmin, "Youssef@123");
+                    var result = await userManager.CreateAsync(mainAdmin, "Test@123");
                     if (!result.Succeeded)
                     {
                         throw new Exception("Failed to create main admin user.");
@@ -65,14 +65,14 @@ namespace GymManagement.DAL.Data.DataSeed
                     }
                     var admin = new ApplicationUser()
                     {
-                        FirstName = "Omar",
-                        LastName = "Mohamed",
-                        UserName = "om_217",
-                        NormalizedUserName = "OM_217",
-                        Email = "omar@gmail.com",
+                        FirstName = "admin",
+                        LastName = "admin",
+                        UserName = "admin_317",
+                        NormalizedUserName = "AMDIN_317",
+                        Email = "admin@test.com",
                         PhoneNumber = "01000000001",
                     };
-                    result = await userManager.CreateAsync(admin, "Omar@123");
+                    result = await userManager.CreateAsync(admin, "Test@123");
                     if (!result.Succeeded)
                     {
                         throw new Exception("Failed to create admin user.");

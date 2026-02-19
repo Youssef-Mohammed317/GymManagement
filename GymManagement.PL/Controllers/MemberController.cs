@@ -24,7 +24,6 @@ namespace GymManagement.PL.Controllers
 
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
-
             return View(response.Data);
         }
 
